@@ -46,6 +46,7 @@ export class AppComponent {
   JSONtoTabbedTxt(dataStr: string) {
     const data = JSON.parse(dataStr);
     this.timeSheet = [];
+    let prevNote = '';
     data.data.forEach((row: any) => {
       const sub = pick(row, this.desiredInputHeaders);
       sub['project'] = sub['project'].split(' ')[0];
@@ -55,6 +56,11 @@ export class AppComponent {
       const stopDate = addMinutes(startDate, sub['duration']);
       sub['start'] = format(startDate, 'h:mm a');
       sub['end'] = format(stopDate, 'h:mm a');
+      if (sub['note'].length === 0 && prevNote.length) {
+        sub['note'] = prevNote;
+      } else {
+        prevNote = sub['note'];
+      }
     });
   }
 
