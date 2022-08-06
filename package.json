@@ -4,12 +4,14 @@
   "main": "main.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "electron-forge start",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "electron": "ng build && electron .",
-    "format": "prettier --config .prettierrc --write \"./**/*.{ts,tsx,scss,js}\""
+    "format": "prettier --config .prettierrc --write \"./**/*.{ts,tsx,scss,js}\"",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +26,7 @@
     "@types/lodash": "^4.14.182",
     "bootstrap": "^5.2.0",
     "date-fns": "^2.29.1",
+    "electron-squirrel-startup": "^1.0.0",
     "lodash": "^4.17.21",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
@@ -33,6 +36,11 @@
     "@angular-devkit/build-angular": "^14.1.1",
     "@angular/cli": "~14.1.1",
     "@angular/compiler-cli": "^14.1.0",
+    "@electron-forge/cli": "^6.0.0-beta.65",
+    "@electron-forge/maker-deb": "^6.0.0-beta.65",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.65",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.65",
+    "@electron-forge/maker-zip": "^6.0.0-beta.65",
     "@types/jasmine": "~4.0.0",
     "electron": "^20.0.1",
     "jasmine-core": "~4.2.0",
@@ -43,5 +51,32 @@
     "karma-jasmine-html-reporter": "~2.0.0",
     "prettier": "^2.7.1",
     "typescript": "~4.7.2"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "timelog_app"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   }
 }

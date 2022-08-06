@@ -3,7 +3,7 @@ const url = require('url');
 const path = require('path');
 
 function onReady() {
-  const win = new BrowserWindow({ width: 900, height: 6700 });
+  const win = new BrowserWindow({ width: 900, height: 900 });
   win.loadURL(
     url.format({
       pathname: path.join(__dirname, 'dist/timelog-app/index.html'),

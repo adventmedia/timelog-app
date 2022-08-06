@@ -8,27 +8,29 @@
   </div>
   <div class="row">
     <h2>Converted Timesheet</h2>
-    <table class="table table-bordered table-sm">
-      <thead>
-        <tr class="table-header">
-          <th>Project</th>
-          <th>Date</th>
-          <th>Start</th>
-          <th>Stop</th>
-          <th>Rate</th>
-          <th>Note</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let entry of timeSheet">
-          <td>{{ entry.project }}</td>
-          <td>{{ entry.date }}</td>
-          <td>{{ entry.start }}</td>
-          <td>{{ entry.end }}</td>
-          <td>{{ entry.rate }}</td>
-          <td>{{ entry.note }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="data-table">
+      <table class="table table-bordered table-sm">
+        <thead>
+          <tr class="table-header">
+            <th>Project</th>
+            <th>Date</th>
+            <th>Start</th>
+            <th>Stop</th>
+            <th>Rate</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let entry of timeSheet">
+            <td>{{ entry.project }}</td>
+            <td>{{ entry.date }}</td>
+            <td>{{ entry.start }}</td>
+            <td>{{ entry.end }}</td>
+            <td>{{ entry.rate }}</td>
+            <td>{{ entry.note }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
