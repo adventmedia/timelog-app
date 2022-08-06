@@ -59,8 +59,26 @@ export class AppComponent {
   }
 
   async saveTxt() {
+    const tab = '\t';
+    const header = Object.keys(this.timeSheet[0]);
+    const rows: string[] = [header.join(tab)];
+    this.timeSheet.forEach((row, index) => {
+      if (index > 0) {
+        const rowArr = [];
+        for (const k in row) {
+          // @ts-ignore
+          rowArr.push(row[k]);
+        }
+        rows.push(rowArr.join(tab));
+      }
+    });
+   const contents = rows.join('\n');
+   this.createAndSave(contents);
+  }
+
+  async createAndSave(contents: string) {
     const handle = await this.getNewFileHandle();
-    handle && this.writeFile(handle, JSON.stringify(this.timeSheet));
+    handle && this.writeFile(handle, contents);
   }
 
   async getNewFileHandle() {
