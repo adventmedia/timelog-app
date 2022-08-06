@@ -1,7 +1,34 @@
-<div class='container-fluid'>
-  <div class='row'>
-    <div class='col'>
-      <button (click)='openJSON()' class='btn btn-primary'>Load exported .csv</button>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col my-4">
+      <button (click)="openJSON()" class="btn btn-primary me-4">Load JSON</button>
+      <button (click)="saveTxt()" class="btn btn-success me-4" [disabled]="timeSheet.length === 0">Export to text</button>
+      <span>{{ fileName }}</span>
     </div>
+  </div>
+  <div class="row">
+    <h2>Converted Timesheet</h2>
+    <table class="table table-bordered table-sm">
+      <thead>
+        <tr class="table-header">
+          <th>Project</th>
+          <th>Date</th>
+          <th>Start</th>
+          <th>Stop</th>
+          <th>Rate</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entry of timeSheet">
+          <td>{{ entry.project }}</td>
+          <td>{{ entry.date }}</td>
+          <td>{{ entry.start }}</td>
+          <td>{{ entry.end }}</td>
+          <td>{{ entry.rate }}</td>
+          <td>{{ entry.note }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
